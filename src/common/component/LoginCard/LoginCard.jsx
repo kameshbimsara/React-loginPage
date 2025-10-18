@@ -3,11 +3,13 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import React, { useState } from 'react'
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginCard() {
 
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     function loginAction() {
 
@@ -18,7 +20,7 @@ export default function LoginCard() {
             .then(function (response) {
                 console.log(response.data.token)
                 localStorage.setItem('afsd-9', response.data.token)
-                window.location.reload()
+                navigate('/home')
             })
             .catch(function (error) {
                 console.log(error)
@@ -72,10 +74,11 @@ export default function LoginCard() {
 
              <p style={{
                 marginTop: "100px",
-                textAlign: "center"
+                textAlign: "center",
+                color:"white"
             }}>
                 Go to register Page?{" "}
-                <Link to="/register" style={{ color: "blue", textDecoration: "underline" }}>
+                <Link to="/register" style={{ color: "#42a5f5", textDecoration: "underline" }}>
                     Register here
                 </Link>
             </p>
